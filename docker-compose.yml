@@ -18,6 +18,7 @@ services:
 
   db:
     image: mysql/mysql-server
+    command: --default-authentication-plugin=mysql_native_password
     container_name: mercury_db
     env_file: ./.env
     environment:
@@ -28,6 +29,20 @@ services:
     volumes:
       - mysql:/var/lib/mysql
       - mysql_config:/etc/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=$MYSQL_DATABASE
+      - PMA_USER=$MYSQL_USER
+      - PMA_PASSWORD=$MYSQL_PASSWORD
+    ports:
+      - $PHPMYADMIN_LOCAL_PORT:$PHPMYADMIN_DOCKER_PORT
+    links:
+      - mercury_db
+    volumes:
+      - /sessions
 
 volumes:
   mysql:
