@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +18,13 @@
   },
   "homepage": "https://github.com/Bear27kuma/user-management-system#readme",
   "dependencies": {
+    "body-parser": "^1.19.1",
     "dotenv": "^15.0.0",
     "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
     "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
