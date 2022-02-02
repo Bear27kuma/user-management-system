@@ -19,8 +19,13 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Templating Engine
-app.engine('hbs', exphbs({ extname: '.hbs' }));
+app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
+
+// Router
+app.get('', (req, res) => {
+  res.render('home');
+});
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
