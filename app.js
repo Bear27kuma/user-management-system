@@ -27,6 +27,7 @@ app.get('', (req, res) => {
   res.render('home');
 });
 
+// Connection Pool
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
@@ -35,14 +36,11 @@ const pool = mysql.createPool({
   waitForConnections: true,
 });
 
+// Connect to DB
 pool.getConnection((err, connection) => {
   if (err) throw err;
   // eslint-disable-next-line no-console
-  console.log(`Connection ID is ${connection.threadId}`);
-});
-
-app.get('/test', async (req, res) => {
-  res.send({ message: 'Your testing node.js and mysql application.' });
+  console.log(`Connected as ID [${connection.threadId}]`);
 });
 
 app.listen(port, () => {
