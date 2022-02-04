@@ -23,9 +23,9 @@ app.engine('hbs', exphbs.engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
 
 // Router
-app.get('', (req, res) => {
-  res.render('home');
-});
+const routes = require('./server/routes/users');
+
+app.use('/', routes);
 
 // Connection Pool
 const pool = mysql.createPool({
