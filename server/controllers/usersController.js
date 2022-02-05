@@ -18,7 +18,7 @@ exports.view = (req, res) => {
 
     // Use the connection
     // eslint-disable-next-line no-shadow
-    connection.query('SELECT * FROM users', (err, rows) => {
+    connection.query('SELECT * FROM users WHERE status', (err, rows) => {
       // When done with the connection, release it
       connection.release();
 
