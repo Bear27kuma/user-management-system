@@ -47,7 +47,7 @@ exports.find = (req, res) => {
 
     // Use the connection
     // eslint-disable-next-line no-shadow
-    connection.query('SELECT * FROM users WHERE first_name LIKE ?', [`%${searchTerm}%`], (err, rows) => {
+    connection.query('SELECT * FROM users WHERE first_name LIKE ? OR last_name LIKE ?', [`%${searchTerm}%`, `%${searchTerm}%`], (err, rows) => {
       // When done with the connection, release it
       connection.release();
 
