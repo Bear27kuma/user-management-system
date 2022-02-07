@@ -63,3 +63,8 @@ exports.find = (req, res) => {
     });
   });
 };
+
+// Add New User
+exports.form = (req, res) => {
+  res.render('add-user');
+};

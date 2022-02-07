@@ -1,10 +1,11 @@
 const express = require('express');
-const usersController = require('../controllers/usersController');
+const userController = require('../controllers/userController');
 
 const router = express.Router();
 
 // Create, Find, Update, Delete
-router.get('/', usersController.view);
-router.post('/', usersController.find);
+router.get('/', userController.view);
+router.post('/', userController.find);
+router.get('/adduser', userController.form);
 
 module.exports = router;
