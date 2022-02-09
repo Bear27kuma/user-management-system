@@ -57,9 +57,39 @@ exports.find = (req, res) => {
         // eslint-disable-next-line no-console
         console.log(err);
       }
+    });
+  });
+};
 
-      // eslint-disable-next-line no-console
-      console.log('The data from use table: \n', rows);
+// Render User Form
+exports.form = (req, res) => {
+  res.render('add-user');
+};
+
+// Add New User
+exports.create = (req, res) => {
+  const {
+    // eslint-disable-next-line camelcase
+    first_name, last_name, email, phone, comment,
+  } = req.body;
+
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    // eslint-disable-next-line no-console
+    console.log(`Connected as ID [${connection.threadId}]`);
+
+    // Use the connection
+    // eslint-disable-next-line no-shadow,camelcase
+    connection.query('INSERT INTO users SET first_name = ?, last_name = ?, email = ?, phone = ?, comment = ?', [first_name, last_name, email, phone, comment], (err) => {
+      // When done with the connection, release it
+      connection.release();
+
+      if (!err) {
+        res.render('add-user', { alert: 'User added successfully.' });
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
     });
   });
 };
