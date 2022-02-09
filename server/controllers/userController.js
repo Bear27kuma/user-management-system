@@ -70,7 +70,7 @@ exports.form = (req, res) => {
 exports.create = (req, res) => {
   const {
     // eslint-disable-next-line camelcase
-    first_name, last_name, email, phone, comments,
+    first_name, last_name, email, phone, comment,
   } = req.body;
 
   pool.getConnection((err, connection) => {
@@ -80,7 +80,7 @@ exports.create = (req, res) => {
 
     // Use the connection
     // eslint-disable-next-line no-shadow,camelcase
-    connection.query('INSERT INTO users SET first_name = ?, last_name = ?', [first_name, last_name], (err, rows) => {
+    connection.query('INSERT INTO users SET first_name = ?, last_name = ?, email = ?, phone = ?, comment = ?', [first_name, last_name, email, phone, comment], (err) => {
       // When done with the connection, release it
       connection.release();
 
@@ -90,9 +90,6 @@ exports.create = (req, res) => {
         // eslint-disable-next-line no-console
         console.log(err);
       }
-
-      // eslint-disable-next-line no-console
-      console.log('The data from use table: \n', rows);
     });
   });
 };
