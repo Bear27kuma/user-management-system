@@ -5,6 +5,13 @@
     </ol>
 </nav>
 
+{{#if alert}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{alert}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/if}}
+
 <form class="row g-3 needs-validation" method="POST" action="/adduser" novalidate>
     <div class="col-6">
         <div class="form-floating mb-3">
@@ -32,8 +39,8 @@
     </div>
     <div class="col-12">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Comment" name="comment" style="height: 200px">
-            <label for="floatingInput">Comment</label>
+            <textarea class="form-control" placeholder="Leave a comment here" id="comment" name="comment" style="height:200px"></textarea>
+            <label for="comment">Comment</label>
         </div>
     </div>
     <div class="col-12 d-grid">

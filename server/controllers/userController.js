@@ -85,7 +85,7 @@ exports.create = (req, res) => {
       connection.release();
 
       if (!err) {
-        res.render('add-user');
+        res.render('add-user', { alert: 'User added successfully.' });
       } else {
         // eslint-disable-next-line no-console
         console.log(err);
