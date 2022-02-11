@@ -28,9 +28,6 @@ exports.view = (req, res) => {
         // eslint-disable-next-line no-console
         console.log(err);
       }
-
-      // eslint-disable-next-line no-console
-      console.log('The data from use table: \n', rows);
     });
   });
 };
@@ -96,5 +93,23 @@ exports.create = (req, res) => {
 
 // Render Edit Page
 exports.edit = (req, res) => {
-  res.render('edit-user');
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    // eslint-disable-next-line no-console
+    console.log(`Connected as ID [${connection.threadId}]`);
+
+    // Use the connection
+    // eslint-disable-next-line no-shadow
+    connection.query('SELECT * FROM users WHERE id = ?', [req.params.id], (err, rows) => {
+      // When done with the connection, release it
+      connection.release();
+
+      if (!err) {
+        res.render('edit-user', { rows });
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    });
+  });
 };
