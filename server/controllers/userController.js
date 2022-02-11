@@ -93,3 +93,8 @@ exports.create = (req, res) => {
     });
   });
 };
+
+// Render Edit Page
+exports.edit = (req, res) => {
+  res.render('edit-user');
+};
