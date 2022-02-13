@@ -32,6 +32,29 @@ exports.view = (req, res) => {
   });
 };
 
+// View Users
+exports.show = (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    // eslint-disable-next-line no-console
+    console.log(`Connected as ID [${connection.threadId}]`);
+
+    // Use the connection
+    // eslint-disable-next-line no-shadow
+    connection.query('SELECT * FROM users WHERE id = ?', [req.params.id], (err, rows) => {
+      // When done with the connection, release it
+      connection.release();
+
+      if (!err) {
+        res.render('view-user', { rows });
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    });
+  });
+};
+
 // Find User by Search
 exports.find = (req, res) => {
   pool.getConnection((err, connection) => {
