@@ -113,3 +113,51 @@ exports.edit = (req, res) => {
     });
   });
 };
+
+// Update User
+exports.update = (req, res) => {
+  const {
+    // eslint-disable-next-line camelcase
+    first_name, last_name, email, phone, comment,
+  } = req.body;
+
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    // eslint-disable-next-line no-console
+    console.log(`Connected as ID [${connection.threadId}]`);
+
+    // Use the connection
+    // eslint-disable-next-line no-shadow,camelcase
+    connection.query('UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, comment = ? WHERE id = ?', [first_name, last_name, email, phone, comment, req.params.id], (err, rows) => {
+      // When done with the connection, release it
+      connection.release();
+
+      if (!err) {
+        // eslint-disable-next-line no-shadow
+        pool.getConnection((err, connection) => {
+          if (err) throw err;
+          // eslint-disable-next-line no-console
+          console.log(`Connected as ID [${connection.threadId}]`);
+
+          // Use the connection
+          // eslint-disable-next-line no-shadow
+          connection.query('SELECT * FROM users WHERE id = ?', [req.params.id], (err, rows) => {
+            // When done with the connection, release it
+            connection.release();
+
+            if (!err) {
+              // eslint-disable-next-line camelcase
+              res.render('edit-user', { rows, alert: `${first_name} has been updated.` });
+            } else {
+              // eslint-disable-next-line no-console
+              console.log(err);
+            }
+          });
+        });
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    });
+  });
+};
