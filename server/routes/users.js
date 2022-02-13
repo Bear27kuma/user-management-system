@@ -5,6 +5,8 @@ const router = express.Router();
 
 // User List
 router.get('/', userController.view);
+// View User Detail
+router.get('/viewuser/:id', userController.show);
 // User Search
 router.post('/', userController.find);
 // User From
