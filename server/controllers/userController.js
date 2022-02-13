@@ -128,7 +128,7 @@ exports.update = (req, res) => {
 
     // Use the connection
     // eslint-disable-next-line no-shadow,camelcase
-    connection.query('UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, comment = ? WHERE id = ?', [first_name, last_name, email, phone, comment, req.params.id], (err, rows) => {
+    connection.query('UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, comment = ? WHERE id = ?', [first_name, last_name, email, phone, comment, req.params.id], (err) => {
       // When done with the connection, release it
       connection.release();
 
@@ -154,6 +154,29 @@ exports.update = (req, res) => {
             }
           });
         });
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    });
+  });
+};
+
+// Delete a user
+exports.delete = (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) throw err;
+    // eslint-disable-next-line no-console
+    console.log(`Connected as ID [${connection.threadId}]`);
+
+    // Use the connection
+    // eslint-disable-next-line no-shadow
+    connection.query('UPDATE users SET status = ? WHERE id = ?', ['removed', req.params.id], (err) => {
+      // When done with the connection, release it
+      connection.release();
+
+      if (!err) {
+        res.redirect('/');
       } else {
         // eslint-disable-next-line no-console
         console.log(err);
