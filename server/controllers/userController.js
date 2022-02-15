@@ -23,7 +23,8 @@ exports.view = (req, res) => {
       connection.release();
 
       if (!err) {
-        res.render('home', { rows });
+        const removedUser = req.query.removed;
+        res.render('home', { rows, removedUser });
       } else {
         // eslint-disable-next-line no-console
         console.log(err);
@@ -199,7 +200,8 @@ exports.delete = (req, res) => {
       connection.release();
 
       if (!err) {
-        res.redirect('/');
+        const removedUser = encodeURIComponent('User removed');
+        res.redirect(`/?removed=${removedUser}`);
       } else {
         // eslint-disable-next-line no-console
         console.log(err);
