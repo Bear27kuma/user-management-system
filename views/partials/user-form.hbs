@@ -1,33 +1,27 @@
-<div class="col-6">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" value="{{this.first_name}}" placeholder="First Name" name="first_name">
-        <label for="floatingInput">First Name</label>
+<div class="flex flex-wrap justify-between">
+    <div class="w-full lg:w-1/2 mb-7 lg:pr-2 p-0">
+        <input type="text" placeholder="First Name" id="first-name" name="first_name" class="input input-bordered w-full" value="{{this.first_name}}">
+        <label for="first-name"></label>
+    </div>
+    <div class="w-full lg:w-1/2 mb-7 lg:pl-2 p-0">
+        <input type="text" placeholder="Last Name" id="last-name" name="last_name" class="input input-bordered w-full" value="{{this.last_name}}">
+        <label for="last-name"></label>
     </div>
 </div>
-<div class="col-6">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" value="{{this.last_name}}" placeholder="Last Name" name="last_name">
-        <label for="floatingInput">Last Name</label>
+<div class="flex flex-wrap justify-between">
+    <div class="w-full lg:w-1/2 mb-7 lg:pr-2 p-0">
+        <input type="text" placeholder="Email" id="email" name="email" class="input input-bordered w-full" value="{{this.email}}">
+        <label for="email"></label>
+    </div>
+    <div class="w-full lg:w-1/2 mb-7 lg:pl-2 p-0">
+        <input type="text" placeholder="Phone" id="phone" name="phone" class="input input-bordered w-full" value="{{this.phone}}">
+        <label for="phone"></label>
     </div>
 </div>
-<div class="col-6">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" value="{{this.email}}" placeholder="Email" name="email">
-        <label for="floatingInput">Email</label>
-    </div>
+<div class="w-full mb-7">
+    <textarea class="textarea textarea-bordered w-full" placeholder="Leave a comment here" name="comment" id="comment" style="height:200px">{{ this.comment }}</textarea>
+    <label for="comment"></label>
 </div>
-<div class="col-6">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" value="{{this.phone}}" placeholder="Phone" name="phone">
-        <label for="floatingInput">Phone</label>
-    </div>
-</div>
-<div class="col-12">
-    <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="Leave a comment here" id="comment" name="comment" style="height:200px">{{ this.comment }}</textarea>
-        <label for="comment">Comment</label>
-    </div>
-</div>
-<div class="col-12 d-grid">
-    <button class="btn btn-primary" type="submit">Submit</button>
+<div class="w-full flex items-center">
+    <button class="btn btn-primary btn-wide mx-auto" type="submit">Save</button>
 </div>
