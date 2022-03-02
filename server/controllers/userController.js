@@ -37,8 +37,6 @@ exports.view = (req, res) => {
 exports.show = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    // eslint-disable-next-line no-console
-    console.log(`Connected as ID [${connection.threadId}]`);
 
     // Use the connection
     // eslint-disable-next-line no-shadow
@@ -60,8 +58,6 @@ exports.show = (req, res) => {
 exports.find = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    // eslint-disable-next-line no-console
-    console.log(`Connected as ID [${connection.threadId}]`);
 
     // Search term
     const searchTerm = req.body.search;
@@ -96,8 +92,6 @@ exports.create = (req, res) => {
 
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    // eslint-disable-next-line no-console
-    console.log(`Connected as ID [${connection.threadId}]`);
 
     // Use the connection
     // eslint-disable-next-line no-shadow,camelcase
@@ -119,8 +113,6 @@ exports.create = (req, res) => {
 exports.edit = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    // eslint-disable-next-line no-console
-    console.log(`Connected as ID [${connection.threadId}]`);
 
     // Use the connection
     // eslint-disable-next-line no-shadow
@@ -160,8 +152,6 @@ exports.update = (req, res) => {
         // eslint-disable-next-line no-shadow
         pool.getConnection((err, connection) => {
           if (err) throw err;
-          // eslint-disable-next-line no-console
-          console.log(`Connected as ID [${connection.threadId}]`);
 
           // Use the connection
           // eslint-disable-next-line no-shadow
@@ -190,8 +180,6 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   pool.getConnection((err, connection) => {
     if (err) throw err;
-    // eslint-disable-next-line no-console
-    console.log(`Connected as ID [${connection.threadId}]`);
 
     // Use the connection
     // eslint-disable-next-line no-shadow

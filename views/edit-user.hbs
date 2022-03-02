@@ -1,16 +1,25 @@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Edit user</li>
-    </ol>
-</nav>
+<div class="breadcrumbs mb-5">
+    <ul>
+        <li>
+            <a href="/"><i class="fa-solid fa-house-chimney"></i>Home</a>
+        </li>
+        <li>
+            <i class="fa-solid fa-user-pen"></i>
+            Edit User
+        </li>
+    </ul>
+</div>
 
 {{#if alert}}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{alert}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="alert alert-success shadow-lg flex justify-between mb-5">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{{alert}}</span>
+        </div>
     </div>
 {{/if}}
+
+<h1 class="text-2xl font-semibold mb-8">Edit User</h1>
 
 {{#each rows}}
     <form class="row g-3 needs-validation" method="POST" action="/edituser/{{this.id}}" novalidate>
